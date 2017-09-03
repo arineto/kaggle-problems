@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+
+  kaggle-problems:
+    image: kaggle-problems
+    container_name: kaggle-problems
+    build:
+      context: .
+      dockerfile: ./compose/kaggle-problems/Dockerfile
+    env_file:
+      - ./compose/environ/env
+    volumes:
+      - .:/app
+    expose:
+      - 8888
+    ports:
+      - 8888:8888
+    command: jupyter notebook --ip=0.0.0.0 --notebook-dir=notebooks --allow-root --no-browser
